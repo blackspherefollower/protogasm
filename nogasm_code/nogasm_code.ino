@@ -144,9 +144,9 @@ void setup() {
 
   // Classic AVR based Arduinos have a PWM frequency of about 490Hz which
   // causes the motor to whine.  Change the prescaler to achieve 31372Hz.
-  sbi(TCCR1B, CS10);
-  cbi(TCCR1B, CS11);
-  cbi(TCCR1B, CS12);
+  //sbi(TCCR1B, CS10);
+  //cbi(TCCR1B, CS11);
+  //cbi(TCCR1B, CS12);
 
   pinMode(MOTPIN,OUTPUT); //Enable "analog" out (PWM)
   
@@ -304,6 +304,8 @@ uint8_t check_button(){
   static unsigned long keyDownTime = 0;
   uint8_t btnState = BTN_NONE;
   bool thisBtn = digitalRead(ENC_SW);
+  
+  Serial.println(thisBtn== ENC_SW_DOWN ? "button down" : "button up" );
 
   //Detect single presses, no repeating, on keyup
   if(thisBtn == ENC_SW_DOWN && lastBtn == ENC_SW_UP){
@@ -466,3 +468,4 @@ void loop() {
 
   }
 }
+
